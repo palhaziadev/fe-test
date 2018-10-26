@@ -49,6 +49,14 @@ module.exports = {
     // See https://github.com/nuxt-community/axios-module#options
   },
 
+  /**
+   * Router configuration
+   */
+  router: {
+    // middleware added to redirect from index to a specified page
+    middleware: 'index-redirect'
+  },
+
   /*
   ** Build configuration
   */
