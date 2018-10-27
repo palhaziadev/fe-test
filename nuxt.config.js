@@ -56,7 +56,7 @@ module.exports = {
    */
   router: {
     // middleware added to redirect from index to a specified page
-    middleware: 'index-redirect'
+    middleware: 'router-middleware'
   },
 
   /**

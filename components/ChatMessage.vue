@@ -2,7 +2,18 @@
   <div
     :class="[message.type === 'in' ? 'chat-message--in' : 'chat-message--out']"
     class="chat-message">
-    {{ message.message }}
+    <div
+      :class="[message.type === 'in' ? 'chat-message__item--in' : 'chat-message__item--out']"
+      class="chat-message__item">
+      <span
+        v-if="message.type === 'in'"
+        class="chat-message__item-user">
+        {{ message.message.user }}:
+      </span>
+      <span>
+        {{ message.message.message }}
+      </span>
+    </div>
   </div>
 </template>
 
@@ -18,12 +29,31 @@ export default {
 </script>
 
 <style lang="scss">
+@import '~/assets/scss/variables.scss';
+
 .chat-message {
+  display: flex;
+  word-break: break-all;
+  margin: 10px 5px;
   &--in {
-  background-color: aqua;
+    justify-content: flex-start;
   }
   &--out {
-    background-color: blueviolet;
+    justify-content: flex-end;
+  }
+  &__item {
+    max-width: 80%;
+    padding: 5px;
+    &--in {
+      background-color: $lightGrey;
+    }
+    &--out {
+      background-color: $linkActiveColor;
+      color: $backgroundColor;
+    }
+  }
+  &__item-user {
+    font-weight: bold;
   }
 }
 </style>

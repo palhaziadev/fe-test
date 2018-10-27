@@ -1,8 +1,17 @@
+@import 'variables';
+
+@font-face {
+  font-family: 'Roboto';
+  src: url("~/assets/Roboto-Regular.ttf") format("truetype");
+}
+$font-main: 'Roboto', sans-serif;
+
 body {
   margin: 0;
+  font-family: $font-main;
 }
 
 %common-page-style {
-  border: 1px solid #D9E5E3;
-  margin: 0 2px 2px 2px;
+  border: 1px solid $lightGrey;
+  margin: 0 4px 4px 4px;
 }

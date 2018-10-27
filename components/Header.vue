@@ -3,6 +3,7 @@
     <ul class="header-list">
       <li class="header-list__item">
         <nuxt-link
+          :class="{'header-list__item-link--notification': hasUnviewedMessage}"
           to="/chat"
           class="header-list__item-link">
           <span>
@@ -45,12 +46,18 @@
 import ChatIcon from '~/assets/icons/message-square.svg';
 import ApertureIcon from '~/assets/icons/aperture.svg';
 import SettingsIcon from '~/assets/icons/settings.svg';
+import { mapGetters } from 'vuex';
 
 export default {
   components: {
     ChatIcon,
     ApertureIcon,
     SettingsIcon
+  },
+  computed: {
+    ...mapGetters('chat', [
+      'hasUnviewedMessage',
+    ])
   }
 }
 </script>
@@ -65,20 +72,22 @@ export default {
   margin: 0;
   &__item {
     flex: 1;
-    margin: 2px 2px 0 0;
+    margin: 4px 4px 0 0;
     margin-bottom: -1px;
     &:first-of-type {
-      margin-left: 2px;
+      margin-left: 4px;
+    }
+    &:last-of-type {
+      margin-left: 0;
     }
   }
   &__item-link {
-    background-color: $backgroundColor;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 40px;
-    border: 1px solid $borderColor;
-
+    border: 1px solid $lightGrey;
+    border-bottom: none;
     color: $linkColor;
     text-decoration: none;
     &:visited {
@@ -88,11 +97,19 @@ export default {
       text-decoration: none;
       color: $linkActiveColor;
     }
+    &--notification {
+      animation: backgroundColorChange 2s linear infinite;
+    }
   }
 }
 .nuxt-link-active {
   color: $linkActiveColor;
   border-bottom: 1px solid $backgroundColor;
   background-color: $backgroundColor;
+}
+@keyframes backgroundColorChange {
+  50% {
+    background-color: $errorColor;
+  }
 }
 </style>
