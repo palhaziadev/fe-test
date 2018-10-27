@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="photos-page">
     Photos
   </section>
 </template>
@@ -11,5 +11,10 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+@import '~/assets/scss/common.scss';
+
+.photos-page {
+  @extend %common-page-style;
+}
 </style>

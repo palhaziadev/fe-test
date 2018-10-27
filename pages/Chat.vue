@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="chat-page">
     <Chat />
     Chat
   </section>
@@ -15,5 +15,10 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+@import '~/assets/scss/common.scss';
+
+.chat-page {
+  @extend %common-page-style;
+}
 </style>
