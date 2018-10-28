@@ -3,6 +3,7 @@
     :style="getCarouselStyle"
     class="carousel">
     <div
+      ref="carousel__images"
       :style="getCarouselStyle"
       class="carousel__images">
       <transition-group
@@ -42,6 +43,7 @@
 import ChevronLeft from '~/assets/icons/chevron-left.svg';
 import ChevronRight from '~/assets/icons/chevron-right.svg';
 import CarouselImage from '~/components/CarouselImage.vue';
+import { swipeMixin } from '~/mixins/swipeMixin';
 import { mapGetters } from 'vuex';
 
 export default {
@@ -50,6 +52,9 @@ export default {
     ChevronRight,
     CarouselImage
   },
+  mixins: [
+    swipeMixin
+  ],
   data() {
     return {
       active: 0,
@@ -68,6 +73,14 @@ export default {
         height: `${this.getCarouselSize.carouselHeight}px`,
       };
     }
+  },
+  mounted() {
+    // add swipe gesture handling with callbacks for the directions
+    this.addSwipeEventHandlers(this.$refs['carousel__images'], this.slideLeft, this.slideRight);
+  },
+  beforeDestroy() {
+    // remove eventhandler
+    this.removeSwipeEventHandlers(this.$refs['carousel__images']);
   },
   methods: {
     slideLeft() {

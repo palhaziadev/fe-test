@@ -68,6 +68,7 @@ export default {
     })
   },
   beforeDestroy: function () {
+    // remove eventhandler
     window.removeEventListener('resize', this.handleResize)
   },
   methods: {
