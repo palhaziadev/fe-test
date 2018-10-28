@@ -52,8 +52,7 @@
             <input
               v-model="username"
               class="settings__input settings__input--text"
-              type="text"
-              @blur="setUsername(username)" >
+              type="text" >
           </div>
         </div>
       </SettingsBlock>
@@ -76,9 +75,14 @@ export default {
     }
   },
   computed: {
-    ...mapState('chat', {
-      username: (state) => state.username
-    }),
+    username: {
+      get () {
+        return this.$store.state.chat.username;
+      },
+      set (value) {
+        this.$store.commit('chat/SET_USERNAME', value);
+      }
+    },
     ...mapState('carousel', {
       carouselWidth: (state) => state.carouselWidth,
       carouselHeight: (state) => state.carouselHeight,
@@ -90,9 +94,6 @@ export default {
     },
     setCarouselHeightValue(value) {
       this.$store.dispatch('carousel/SET_CAROUSEL_HEIGHT', Number(value));
-    },
-    setUsername(username) {
-      this.$store.dispatch('chat/SET_USERNAME', username);
     }
   }
 }

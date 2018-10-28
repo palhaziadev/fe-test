@@ -31,7 +31,7 @@
           to="/settings"
           class="header-list__item-link">
           <span>
-            <SettingsIcon />
+            <SlidersIcon />
           </span>
           <span>
             Settings
@@ -45,14 +45,14 @@
 <script>
 import ChatIcon from '~/assets/icons/message-square.svg';
 import ApertureIcon from '~/assets/icons/aperture.svg';
-import SettingsIcon from '~/assets/icons/settings.svg';
+import SlidersIcon from '~/assets/icons/sliders.svg';
 import { mapState } from 'vuex';
 
 export default {
   components: {
     ChatIcon,
     ApertureIcon,
-    SettingsIcon
+    SlidersIcon
   },
   computed: {
     ...mapState('chat', {

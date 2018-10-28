@@ -6,10 +6,10 @@
       ref="chat-messages"
       class="chat-messages">
       <div
-        v-for="(item, index) in items"
+        v-for="(message, index) in messages"
         :key="index"
         class="chat-messages__item">
-        <ChatMessage :message="item" />
+        <ChatMessage :message="message" />
       </div>
     </div>
     <div class="chat-actions">
@@ -20,7 +20,7 @@
         @keyup.enter="sendMessage(chatMessage)">
       <button
         class="chat-actions__button"
-        @click="sendMessage()">
+        @click="sendMessage(chatMessage)">
         Send
       </button>
     </div>
@@ -39,13 +39,13 @@ export default {
   data() {
     return {
       pageHeight: '',
-      chatMessage: '',
-      items: []
+      chatMessage: ''
     }
   },
   computed: {
     ...mapState('chat', {
-      username: (state) => state.username
+      username: (state) => state.username,
+      messages: (state) => state.messages
     }),
   },
   mounted() {
@@ -58,13 +58,13 @@ export default {
   },
   created() {
     socket.on('message', (message) => {
-      this.items.push({
+      this.$store.dispatch('chat/ADD_MESSAGE', {
         type: 'in',
         message
       });
       this.$nextTick(() => {
         this.scrollToBottom('chat-messages');
-      })
+      });
       // chat page is not active
       if (this.$route.name !== 'Chat') {
         // set unviewed message flag to true, so I can trigger notification in header
@@ -85,7 +85,7 @@ export default {
     scrollToBottom(elementToScroll) {
       const element = this.$refs[elementToScroll];
       if (element) {
-        element.scrollTop = element.scrollHeight;
+        element.scrollTop = (element || {}).scrollHeight;
       }
     },
     sendMessage(message) {
@@ -94,17 +94,15 @@ export default {
           message,
           user: this.username
           })
-        this.items.push({
+        this.$store.dispatch('chat/ADD_MESSAGE', {
           type: 'out',
           message: {
             message,
             user: this.username
           }
-        })
+        });
         this.scrollToBottom('chat-messages')
         this.chatMessage = ''
-      } else {
-        // error handling
       }
     }
   }
@@ -124,7 +122,7 @@ export default {
   }
   &-actions {
     display: flex;
-    height: 2em;
+    min-height: 2em;
     &__input {
       flex: 4;
       padding-left: 4px;

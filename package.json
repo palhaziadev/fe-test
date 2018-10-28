@@ -5,7 +5,7 @@
   "author": "Adam Palhazi",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
+    "dev": "nuxt --hostname 192.168.0.17",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",

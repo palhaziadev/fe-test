@@ -1,7 +1,3 @@
-# fe-test
-
-> My amazing Nuxt.js project
-
 ## Build Setup
 
 ``` bash
@@ -17,6 +13,6 @@ $ npm start
 
 # generate static project
 $ npm run generate
+# then copy the content of the "dist" folder to webserver
+# tested with nginx 1.14.0 on windows 7
 ```
-
-For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).

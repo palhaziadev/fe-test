@@ -1,6 +1,5 @@
 <template>
   <div
-    :style="getCarouselStyle"
     class="carousel">
     <div
       ref="carousel__images"
@@ -114,44 +113,44 @@ export default {
 </script>
 
 <style lang="scss">
-.carousel__images {
-  position: relative;
-  height: auto;
-  width: auto;
+.carousel {
   overflow: hidden;
-  .carousel-list-item {
-    position: absolute;
-    left: 0px;
+  &__images {
+    position: relative;
+    height: auto;
+    width: auto;
+    overflow: hidden;
+    .carousel-list-item {
+      position: absolute;
+      left: 0px;
+    }
+    .right.carousel-list-enter-active, .right.carousel-list-leave-active {
+      transition: all 2s;
+    }
+    .right.carousel-list-enter {
+      transform: translateX(100%)
+    }
+    .right.carousel-list-leave-to {
+      transform: translateX(-100%)
+    }
+    .carousel-list-enter-active, .carousel-list-leave-active {
+      transition: all 2s;
+    }
+    .carousel-list-enter {
+      transform: translateX(-100%)
+    }
+    .carousel-list-leave-to {
+      transform: translateX(100%)
+    }
   }
-  .right.carousel-list-enter-active, .right.carousel-list-leave-active {
-    transition: all 2s;
-  }
-  .right.carousel-list-enter {
-    transform: translateX(100%)
-  }
-
-  .right.carousel-list-leave-to {
-    transform: translateX(-100%)
-  }
-
-  .carousel-list-enter-active, .carousel-list-leave-active {
-    transition: all 2s;
-  }
-  .carousel-list-enter {
-    transform: translateX(-100%)
-  }
-
-  .carousel-list-leave-to {
-    transform: translateX(100%)
-  }
-}
-.carousel-actions {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  &__button {
-    height: 40px;
-    width: 40px;
+  .carousel-actions {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    &__button {
+      height: 40px;
+      width: 40px;
+    }
   }
 }
 </style>
