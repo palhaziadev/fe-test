@@ -46,7 +46,7 @@
 import ChatIcon from '~/assets/icons/message-square.svg';
 import ApertureIcon from '~/assets/icons/aperture.svg';
 import SettingsIcon from '~/assets/icons/settings.svg';
-import { mapGetters } from 'vuex';
+import { mapState } from 'vuex';
 
 export default {
   components: {
@@ -55,9 +55,9 @@ export default {
     SettingsIcon
   },
   computed: {
-    ...mapGetters('chat', [
-      'hasUnviewedMessage',
-    ])
+    ...mapState('chat', {
+      hasUnviewedMessage: (state) => state.hasUnviewedMessage,
+    })
   }
 }
 </script>

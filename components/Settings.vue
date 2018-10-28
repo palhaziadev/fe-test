@@ -11,28 +11,28 @@
           slot="content"
           class="settings__content">
           <div class="settings__content-line">
-            <span class="settings__text">Width: {{ carouselWidth }}</span>
+            <span class="settings__text">Width: {{ carouselWidthSetting }}</span>
             <input
-              v-model="carouselWidth"
+              v-model="carouselWidthSetting"
               step="1"
               class="settings__input"
               type="range"
               min="320"
               max="1980"
               orient="vertical"
-              @change="setCarouselWidthValue(carouselWidth)" >
+              @change="setCarouselWidthValue(carouselWidthSetting)" >
           </div>
           <div class="settings__content-line">
-            <span class="settings__text">Height: {{ carouselHeight }}</span>
+            <span class="settings__text">Height: {{ carouselHeightSetting }}</span>
             <input
-              v-model="carouselHeight"
+              v-model="carouselHeightSetting"
               step="1"
               class="settings__input"
               type="range"
               min="200"
               max="1080"
               orient="vertical"
-              @change="setCarouselHeightValue(carouselHeight)" >
+              @change="setCarouselHeightValue(carouselHeightSetting)" >
           </div>
         </div>
       </SettingsBlock>
@@ -63,7 +63,7 @@
 
 <script>
 import SettingsBlock from '~/components/SettingsBlock.vue';
-import { mapGetters } from 'vuex';
+import { mapState } from 'vuex';
 
 export default {
   components: {
@@ -71,18 +71,18 @@ export default {
   },
   data() {
     return {
-      carouselWidth: 320,
-      carouselHeight: 200,
-      username: ''
+      carouselWidthSetting: 640,
+      carouselHeightSetting: 480
     }
   },
   computed: {
-    ...mapGetters('chat', [
-      'getUsername',
-    ]),
-    ...mapGetters('carousel', [
-      'getCarouselSize',
-    ]),
+    ...mapState('chat', {
+      username: (state) => state.username
+    }),
+    ...mapState('carousel', {
+      carouselWidth: (state) => state.carouselWidth,
+      carouselHeight: (state) => state.carouselHeight,
+    }),
   },
   methods: {
     setCarouselWidthValue(value) {

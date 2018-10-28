@@ -1,16 +1,7 @@
 export const state = () => ({
   hasUnviewedMessage: false,
   username: 'guest0001'
-})
-
-export const getters = {
-  hasUnviewedMessage(state) {
-    return state.hasUnviewedMessage;
-  },
-  getUsername(state) {
-    return state.username;
-  }
-}
+});
 
 export const actions = {
   SET_USERNAME({ commit }, username) {
@@ -19,7 +10,7 @@ export const actions = {
   UNVIEWED_MESSAGE({ commit }, hasUnviewedMessage) {
     commit('UNVIEWED_MESSAGE', hasUnviewedMessage);
   }
-}
+};
 export const mutations = {
   SET_USERNAME(state, username) {
     state.username = username;
@@ -27,4 +18,4 @@ export const mutations = {
   UNVIEWED_MESSAGE(state, hasUnviewedMessage) {
     state.hasUnviewedMessage = hasUnviewedMessage;
   }
-}
+};

@@ -30,7 +30,7 @@
 <script>
 import socket from '~/plugins/socket.io.js';
 import ChatMessage from './ChatMessage.vue';
-import { mapGetters } from 'vuex';
+import { mapState } from 'vuex';
 
 export default {
   components: {
@@ -44,9 +44,9 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('chat', [
-      'getUsername',
-    ]),
+    ...mapState('chat', {
+      username: (state) => state.username
+    }),
   },
   mounted() {
     // wait to next tick to add event listener
@@ -84,7 +84,9 @@ export default {
     },
     scrollToBottom(elementToScroll) {
       const element = this.$refs[elementToScroll];
-      element.scrollTop = element.scrollHeight;
+      if (element) {
+        element.scrollTop = element.scrollHeight;
+      }
     },
     sendMessage(message) {
       if (message.trim() !== '') {
@@ -126,6 +128,7 @@ export default {
     &__input {
       flex: 4;
       padding-left: 4px;
+      border: 1px solid $lightGrey;
     }
     &__button {
       flex: 1;
