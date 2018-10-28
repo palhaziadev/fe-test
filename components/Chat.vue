@@ -28,8 +28,9 @@
 </template>
 
 <script>
-import socket from '~/plugins/socket.io.js'
-import ChatMessage from './ChatMessage.vue'
+import socket from '~/plugins/socket.io.js';
+import ChatMessage from './ChatMessage.vue';
+import { mapGetters } from 'vuex';
 
 export default {
   components: {
@@ -42,10 +43,14 @@ export default {
       items: []
     }
   },
+  computed: {
+    ...mapGetters('chat', [
+      'getUsername',
+    ]),
+  },
   mounted() {
     window.addEventListener('resize', this.handleResize);
     this.handleResize();
-    this.$store.dispatch('chat/SET_CONNECTED', true);
     this.$refs['message-input'].focus();
   },
   created() {
@@ -83,13 +88,13 @@ export default {
       if (message.trim() !== '') {
         socket.emit('message', {
           message,
-          user: 'guest0001'
+          user: this.username
           })
         this.items.push({
           type: 'out',
           message: {
             message,
-            user: 'guest0001'
+            user: this.username
           }
         })
         this.scrollToBottom('chat-messages')

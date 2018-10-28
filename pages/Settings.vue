@@ -1,13 +1,16 @@
 <template>
   <section class="settings-page">
-    Settings
+    <Settings />
   </section>
 </template>
 
 <script>
+import Settings from '~/components/Settings.vue'
 
 export default {
-
+  components: {
+    Settings
+  }
 }
 </script>
 
@@ -16,5 +19,6 @@ export default {
 
 .settings-page {
   @extend %common-page-style;
+  padding: 20px;
 }
 </style>

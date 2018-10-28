@@ -1,25 +1,28 @@
 export const state = () => ({
-  connected: false,
   hasUnviewedMessage: false,
+  username: 'guest0001'
 })
 
 export const getters = {
   hasUnviewedMessage(state) {
     return state.hasUnviewedMessage;
+  },
+  getUsername(state) {
+    return state.username;
   }
 }
 
 export const actions = {
-  SET_CONNECTED({ commit }, isConnected) {
-    commit('SET_CONNECTED', isConnected);
+  SET_USERNAME({ commit }, username) {
+    commit('SET_USERNAME', username);
   },
   UNVIEWED_MESSAGE({ commit }, hasUnviewedMessage) {
     commit('UNVIEWED_MESSAGE', hasUnviewedMessage);
   }
 }
 export const mutations = {
-  SET_CONNECTED(state, isConnected) {
-    state.connected = isConnected;
+  SET_USERNAME(state, username) {
+    state.username = username;
   },
   UNVIEWED_MESSAGE(state, hasUnviewedMessage) {
     state.hasUnviewedMessage = hasUnviewedMessage;

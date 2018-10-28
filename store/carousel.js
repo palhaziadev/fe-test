@@ -13,18 +13,18 @@ export const getters = {
 }
 
 export const actions = {
-  SET_CAROUSLE_WIDTH({ commit }, carouselWidth) {
-    commit('SET_CAROUSLE_WIDTH', carouselWidth);
+  SET_CAROUSEL_WIDTH({ commit }, carouselWidth) {
+    commit('SET_CAROUSEL_WIDTH', carouselWidth);
   },
-  SET_CAROUSLE_HEIGHT({ commit }, carouselHeight) {
-    commit('SET_CAROUSLE_HEIGHT', carouselHeight);
+  SET_CAROUSEL_HEIGHT({ commit }, carouselHeight) {
+    commit('SET_CAROUSEL_HEIGHT', carouselHeight);
   }
 }
 export const mutations = {
-  SET_CAROUSLE_WIDTH(state, carouselWidth) {
+  SET_CAROUSEL_WIDTH(state, carouselWidth) {
     state.carouselWidth = carouselWidth;
   },
-  SET_CAROUSLE_HEIGHT(state, carouselHeight) {
+  SET_CAROUSEL_HEIGHT(state, carouselHeight) {
     state.carouselHeight = carouselHeight;
   }
 }
