@@ -9,6 +9,10 @@
 - 📷 Carousel images: [https://loremflickr.com/](https://loremflickr.com/)
 - 🎨 UI design: [https://dribbble.com/](https://dribbble.com/)
 
+## Demo
+
+![](demo.gif)
+
 
 ## Technology stack
 

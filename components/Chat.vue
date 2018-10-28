@@ -17,6 +17,7 @@
         ref="message-input"
         v-model="chatMessage"
         class="chat-actions__input"
+        placeholder="Type a message"
         @keyup.enter="sendMessage(chatMessage)">
       <button
         class="chat-actions__button"
@@ -123,13 +124,22 @@ export default {
   &-actions {
     display: flex;
     min-height: 2em;
+    margin: 10px 10px 20px 10px;
     &__input {
       flex: 4;
-      padding-left: 4px;
-      border: 1px solid $lightGrey;
+      padding-left: 10px;
+      border: none;
+      background-color: $lightGrey;
+      border-radius: 4px 0 0 4px;
     }
     &__button {
       flex: 1;
+      background-color: $lightGrey;
+      border-radius: 0 4px 4px 0;
+      padding: 0;
+      margin: 0;
+      border: none;
+      cursor: pointer;
     }
   }
 }

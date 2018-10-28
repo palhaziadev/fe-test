@@ -82,11 +82,13 @@ export default {
     }
   }
   &__item-link {
+    border-radius: 4px 4px 0 0;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 40px;
     border: 1px solid $lightGrey;
+    background-color: $lightGrey;
     border-bottom: none;
     color: $linkColor;
     text-decoration: none;

@@ -52,6 +52,7 @@
             <input
               v-model="username"
               class="settings__input settings__input--text"
+              placeholder="Enter username"
               type="text" >
           </div>
         </div>

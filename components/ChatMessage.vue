@@ -44,11 +44,12 @@ export default {
   &__item {
     max-width: 80%;
     padding: 5px;
+    border-radius: $borderRadius;
     &--in {
-      background-color: $lightGrey;
+      background-color: $messageBlue;
     }
     &--out {
-      background-color: $linkActiveColor;
+      background-color: $messageGreen;
       color: $backgroundColor;
     }
   }
