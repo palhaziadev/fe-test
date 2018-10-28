@@ -1,13 +1,16 @@
 <template>
   <section class="photos-page">
-    Photos
+    <Carousel />
   </section>
 </template>
 
 <script>
+import Carousel from '~/components/Carousel.vue'
 
 export default {
-
+  components: {
+    Carousel
+  }
 }
 </script>
 

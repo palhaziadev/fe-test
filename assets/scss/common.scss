@@ -2,7 +2,7 @@
 
 @font-face {
   font-family: 'Roboto';
-  src: url("~/assets/Roboto-Regular.ttf") format("truetype");
+  src: font-url("~/assets/Roboto-Regular.ttf") format("truetype");
 }
 $font-main: 'Roboto', sans-serif;
 
