@@ -24,7 +24,7 @@ export default {
     }
   },
   created() {
-    this.imageUrl = `https://loremflickr.com/${this.width}/${this.height}?random=${this.generateRandomString()}`
+    this.imageUrl = `https://loremflickr.com/${this.width}/${this.height}?random=${this.generateRandomString()}`;
   },
   methods: {
     // add random string to url in order to prevent chaching

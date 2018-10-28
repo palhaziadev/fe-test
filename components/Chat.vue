@@ -49,19 +49,21 @@ export default {
     ]),
   },
   mounted() {
-    window.addEventListener('resize', this.handleResize);
+    // wait to next tick to add event listener
+    this.$nextTick(function () {
+      window.addEventListener('resize', this.handleResize);
+    });
     this.handleResize();
     this.$refs['message-input'].focus();
   },
   created() {
     socket.on('message', (message) => {
-      console.log('message', message)
       this.items.push({
         type: 'in',
         message
-      })
+      });
       this.$nextTick(() => {
-        this.scrollToBottom('chat-messages')
+        this.scrollToBottom('chat-messages');
       })
       // chat page is not active
       if (this.$route.name !== 'Chat') {

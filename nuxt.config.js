@@ -59,13 +59,6 @@ module.exports = {
     middleware: 'router-middleware'
   },
 
-  /**
-   * Environment variables
-   */
-  env: {
-    WS_URL: process.env.WS_URL || 'http://frontend-test-server.prmrgt.com'
-  },
-
   /*
   ** Build configuration
   */
@@ -87,11 +80,14 @@ module.exports = {
         })
       }
     },
+    // extract CSS to separated file
+    extractCSS: true,
     optimization: {
       splitChunks: {
         chunks: 'async',
       }
     },
+    // generate only one JS file
     splitChunks: {
       pages: false,
       vendor: false,

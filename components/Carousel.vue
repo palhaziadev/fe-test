@@ -13,7 +13,7 @@
           v-show="index === active"
           :key="index"
           :style="getCarouselStyle"
-          :class="{ 'right': (right && (index === active)) || (right && (index === active - 1))}"
+          :class="{ 'active': index === active, 'right': (right && (index === active)) || (right && (index === active - 1))}"
           class="carousel-list-item">
           <CarouselImage
             :width="getCarouselSize.carouselWidth"
@@ -24,7 +24,7 @@
     <div class="carousel-actions">
       <div
         class="carousel-actions__button"
-        @click="slideLeft()">
+        @click="slideLeft($event)">
         <ChevronLeft />
       </div>
       <div class="carousel-actions__state">
@@ -32,7 +32,7 @@
       </div>
       <div
         class="carousel-actions__button"
-        @click="slideRight()">
+        @click="slideRight($event)">
         <ChevronRight />
       </div>
     </div>
@@ -44,7 +44,7 @@ import ChevronLeft from '~/assets/icons/chevron-left.svg';
 import ChevronRight from '~/assets/icons/chevron-right.svg';
 import CarouselImage from '~/components/CarouselImage.vue';
 import { swipeMixin } from '~/mixins/swipeMixin';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapState  } from 'vuex';
 
 export default {
   components: {
@@ -57,16 +57,17 @@ export default {
   ],
   data() {
     return {
-      active: 0,
       right: false,
-      // push initial image into carousel
-      images: [0]
     }
   },
   computed: {
     ...mapGetters('carousel', [
       'getCarouselSize',
     ]),
+    ...mapState('carousel', {
+      images: (state) => state.images,
+      active: (state) => state.active,
+    }),
     getCarouselStyle(getters) {
       return {
         width: `${this.getCarouselSize.carouselWidth}px`,
@@ -83,18 +84,29 @@ export default {
     this.removeSwipeEventHandlers(this.$refs['carousel__images']);
   },
   methods: {
-    slideLeft() {
+    isAnimationInProgress() {
+      const classList = document.querySelector('.active').classList;
+      return classList.contains('carousel-list-enter-active') || classList.contains('carousel-list-leave-active');
+    },
+    slideLeft($event) {
+      // check if animation is in progress then disable sliding
+      if (this.isAnimationInProgress()) {
+        return;
+      }
       this.right = false;
       // prevent slide left if the first picture is shown
-      this.active = Math.max(this.active - 1, 0);
+      this.$store.dispatch('carousel/SET_ACTIVE', Math.max(this.active - 1, 0));
     },
     slideRight() {
-      this.active = this.active + 1;
+      if (this.isAnimationInProgress()) {
+        return;
+      }
+      this.$store.dispatch('carousel/SET_ACTIVE', this.active + 1);
       // add class right if slide right clicked to change transition classes
       this.right = true;
       // add new image only if I am on the last slide of the carousel
       if (this.images.length === this.active) {
-        this.images.push(this.images.length);
+        this.$store.dispatch('carousel/SET_IMAGES', [...this.images, this.images.length]);
       }
     }
   }
